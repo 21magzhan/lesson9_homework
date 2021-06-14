@@ -8,18 +8,17 @@
 actor: FunctionalTester
 modules:
     enabled:
-        - PhpBrowser
-        # add a framework module here
-        - \Helper\Functional
-        - \Helper\BaseHelper
         - REST:
-           depends: PhpBrowser
-           url: 'http://api.izze.xyz/test/'
-    
-    config:
-        PhpBrowser:
-            url: 'http://api.izze.xyz/test/'
+            depends: PhpBrowser
+        - MongoDb:
+            dsn: 'mongodb://46.101.235.30/UpgradeApp'
+            populate: false
+            cleanup: false
+        - PhpBrowser:
+            url: 'http://izze.xyz'
             headers:
                 Content-Type: application/json
-
+        - Asserts
+        - \Helper\Functional
+        - \Helper\BaseHelper
     step_decorators: ~       
